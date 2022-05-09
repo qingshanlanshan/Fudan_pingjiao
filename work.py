@@ -67,15 +67,16 @@ while 1 :
     text = driver.find_elements(By.TAG_NAME,'textarea')
     for i in text :
         i.send_keys('好')
+    try:
+        button = driver.find_element(By.ID,'next_button')
+        button.click()
 
-    button = driver.find_element(By.ID,'next_button')
-    button.click()
-
-    buttons = driver.find_elements(By.TAG_NAME,'button')
-    for i in buttons :
-        if i.get_attribute('data-id')=='ok' : 
-            print('here')
-            i.send_keys(Keys.ENTER)
-
+        buttons = driver.find_elements(By.TAG_NAME,'button')
+        for i in buttons :
+            if i.get_attribute('data-id')=='ok' : 
+                print('here')
+                i.send_keys(Keys.ENTER)
+    except:
+        pass
     driver.close()
     driver.switch_to.window(driver.window_handles[0])
